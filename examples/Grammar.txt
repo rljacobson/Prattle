@@ -1,0 +1,42 @@
+# Defaults
+# name: name
+# associativity: left
+# meaningful: false
+# syntax: expr1 op expr2
+# parse: name[expr1, expr2]
+# fullform: name[expr1, expr2]
+
+
+#  LToken, NToken, OToken, Affix, and Arity can all be inferred from the syntax.
+name: SubsuperscriptBox
+associativity: right
+meaningful: true
+syntax: expr1 "\^" expr2 "\%" expr3
+parse: SubsuperscriptBox[expr1, expr2, expr3]
+
+# Repeated - zero or more, prefix
+name: Construct
+associativity: left
+meaningful: true
+syntax: expr1 "[" (expr2,)* "]"
+parse: expr1[(expr2,)*]
+
+# Repeated - Zero or more, suffix
+name: Part
+associativity: left
+meaningful: true
+syntax: expr1 "[[" (expr2, )* "]]"
+parse: Part[expr1, (expr2,)*]
+
+# Repeated  - One or more, count captured
+name: Out
+associativity: non
+meaningful: true
+syntax: ("%")+
+parse: Out[Minus[n]]
+fullform: Out[-n]
+
+# Optional (no spaces)
+name: NamedBlankNullSequence
+syntax: symb NoSpace "___" NoSpace  (expr1)?
+parse: Pattern[symb, BlankNullSequence[expr1]]
