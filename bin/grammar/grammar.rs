@@ -1,5 +1,5 @@
 #![allow(dead_code)]
-/// This module defines the grammar of a syntax description DSL.
+/// This module defines the grammar of a grammar description DSL.
 use std::fs;
 extern crate nom;
 use nom::{
@@ -16,7 +16,7 @@ use nom::{
     multi::{separated_nonempty_list, separated_list, many1, many0_count},
 };
 
-use crate::syntax::syntax::*;
+use crate::grammar::syntax::*;
 
 // region: Infinite Recursion Guard
 

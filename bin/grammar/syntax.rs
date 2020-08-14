@@ -1,5 +1,5 @@
 #![allow(dead_code)]
-/// This module defines types for the syntax description DSL.
+/// This module defines types for the grammar description DSL.
 
 use itertools::{join};
 use std::fmt;
@@ -21,7 +21,7 @@ pub fn enum_to_field(name: FieldType) -> &'static str{
         FieldType::Name => "name",
         FieldType::Associativity => "associativity",
         FieldType::Meaningful => "meaningful",
-        FieldType::Syntax => "syntax",
+        FieldType::Syntax => "grammar",
         FieldType::Parse => "parse",
         FieldType::Fullform => "fullform",
         _ => "Error"
@@ -97,7 +97,7 @@ pub enum Syntax {
     SequenceDelim(Vec<Syntax>),
     Sequence(Vec<Syntax>),
     Alternative(Vec<Syntax>),
-    Empty // The absense of a syntax value.
+    Empty // The absense of a grammar value.
 }
 
 // Display functions
@@ -185,7 +185,7 @@ impl fmt::Display for OpRecord {
         out.push_str(&format!("{}", self.precedence));
         out.push_str("\n\tmeaningful: ");
         out.push_str(&format!("{}", self.meaningful));
-        out.push_str("\n\tsyntax: ");
+        out.push_str("\n\tgrammar: ");
         out.push_str(&format!("{}", &self.syntax));
         out.push_str("\n\tparse: ");
         out.push_str(&format!("{}", &self.parse));

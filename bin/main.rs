@@ -4,8 +4,8 @@ use std::{env};
 use itertools::join;
 extern crate nom;
 
-mod syntax;
-use syntax::grammar::parse_grammar_file;
+mod grammar;
+use grammar::parse_grammar_file;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
