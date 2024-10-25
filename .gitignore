@@ -3,6 +3,8 @@
 **/*.rs.bk
 /build
 
+**/Cargo.lock
+
 ## Editors/IDEs ##
 
 # CLion

@@ -44,14 +44,14 @@ pub enum Associativity{
     Left,
     Right,
     Non,
-    None // = All
+    Full
 }
 
 pub fn assoc_to_enum(name: &str) ->Associativity{
     match &name.to_ascii_lowercase()[..] {
         "left" => Associativity::Left,
         "right" => Associativity::Right,
-        "none" => Associativity::None,
+        "full" => Associativity::Full,
         "non" => Associativity::Non,
         _ => Associativity::Non,
     }
@@ -61,12 +61,12 @@ pub fn enum_to_assoc(name: &Associativity) -> &str{
     match name {
         Associativity::Left => "Left" ,
         Associativity::Right => "Right",
-        Associativity::None => "None",
+        Associativity::Full => "Full",
         Associativity::Non => "Non",
     }
 }
 
-pub enum TokenDonation{
+pub enum TokenDenotation{
     Left,
     Null,
     Other

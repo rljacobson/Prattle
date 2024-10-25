@@ -61,7 +61,7 @@ fn recurse_guard(which: RecursiveFn) -> bool {
 }
 // endregion: Infinite Recursion Guard
 
-/// The same as parse_field, but expects a name field: `"name: value"`.
+/// The same as `parse_field`, but expects a name field: `"name: value"`.
 fn parse_op_name(input: &str) -> IResult<&str, &str> {
     let parse_field_name =
         delimited(

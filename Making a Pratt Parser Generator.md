@@ -14,7 +14,7 @@ Vaughan Pratt had described his algorithm six years earlier in 1973 at the very 
 
 There are already many articles on the web describing the Pratt parsing algorithm. (I recommend [5].) If you are not familiar with the algorithm, go read up on it before returning here.
 
-A typical object oriented design is to have a node class for each kind of AST node, each class implementing their own "parselet" method, traditionally named `led`  for "left donation" after Pratt's original article, that is called by a driver algorithm and is responsible for parsing the node instance's operands (children) by calling back into the driver before returning. Each class also keeps track of its associativity and precedence. The driver algorithm consumes a token, looks up the appropriate class in a table, creates an instance and calls its parslet method.
+A typical object oriented design is to have a node class for each kind of AST node, each class implementing their own "parselet" method, traditionally named `led`  for "left denotation" after Pratt's original article, that is called by a driver algorithm and is responsible for parsing the node instance's operands (children) by calling back into the driver before returning. Each class also keeps track of its associativity and precedence. The driver algorithm consumes a token, looks up the appropriate class in a table, creates an instance and calls its parslet method.
 
 We can be a little bit more efficient by having only a handful of superclasses corresponding to each required (affix, associativity) combination. In the typical object-oriented Pratt-parser design, every operator would need a subclass of the form
 
@@ -31,7 +31,7 @@ class Multiply: public InfixLeftAssoc{
 }
 ```
 
-This class establishes the Multiply operator as an infix, left associative operator. We have also initialized our operator precedence to 40. Again, the InfixLeftAssoc superclass and other ancestor classes compute left and right binding power (LBP and RBP) from the value of precedence and associativity and implement the `led` method ("left donation" parselette method) and any utility methods and members. This concrete subclass serves the following purposes:
+This class establishes the Multiply operator as an infix, left associative operator. We have also initialized our operator precedence to 40. Again, the InfixLeftAssoc superclass and other ancestor classes compute left and right binding power (LBP and RBP) from the value of precedence and associativity and implement the `led` method ("left denotation" parselette method) and any utility methods and members. This concrete subclass serves the following purposes:
 
 1. encodes the affix (by specifying its superclass)
 2. encodes the associativity  (by specifying its superclass)
